@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Интересные факты о химии{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Интересные факты о химии</h1>
+        <div class="facts-list">
+            
+            {% for fact in facts %}
+            <div class="fact card">
+                <h3>{{ fact.name }}</h3>
+                <p>{{ fact.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

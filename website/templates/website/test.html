@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Тесты по химии{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Тесты по химии</h1>
+        <p>Выберите правильные ответы на вопросы:</p>
+
+        <div id="quiz">
+            <div class="question card">
+                <p><strong>1. Какой газ необходим для дыхания человека?</strong></p>
+                <label><input type="radio" name="q1" value="O2"> Кислород (O₂)</label><br>
+                <label><input type="radio" name="q1" value="CO2"> Углекислый газ (CO₂)</label><br>
+                <label><input type="radio" name="q1" value="N2"> Азот (N₂)</label>
+            </div>
+
+            <div class="question card">
+                <p><strong>2. Какая из этих кислот является сильной?</strong></p>
+                <label><input type="radio" name="q2" value="HCl"> Соляная кислота (HCl)</label><br>
+                <label><input type="radio" name="q2" value="CH3COOH"> Уксусная кислота (CH₃COOH)</label><br>
+                <label><input type="radio" name="q2" value="H2CO3"> Угольная кислота (H₂CO₃)</label>
+            </div>
+
+            <div class="question card">
+                <p><strong>3. Какой элемент обозначается символом "Fe"?</strong></p>
+                <label><input type="radio" name="q3" value="Iron"> Железо</label><br>
+                <label><input type="radio" name="q3" value="Fluorine"> Фтор</label><br>
+                <label><input type="radio" name="q3" value="Francium"> Франций</label>
+            </div>
+
+            <button id="submitQuiz" class="button">Проверить ответы</button>
+            <p id="quizResult"></p>
+        </div>
+    </div>
+{% endblock %}

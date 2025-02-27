@@ -1,0 +1,321 @@
+/* Общие стили */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Навигационная панель */
+nav {
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+nav .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Основное содержимое */
+main {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Кнопка */
+.button {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color: #2980b9;
+}
+
+/* Стили для карточек информации */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: center;
+}
+
+/* Таблица Менделеева */
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  padding: 20px;
+  justify-content: center;
+}
+
+.element {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ccc;
+  background-color: #ecf0f1;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.element:hover {
+  background-color: #bdc3c7;
+}
+
+#element-info {
+  display: none;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ---------------------------------------------------------- */
+
+/* === Главная страница === */
+.container {
+  text-align: center;
+  padding: 50px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container h1 {
+  font-size: 32px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.container p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* === Блок возможностей === */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h2 {
+  font-size: 22px;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  color: #666;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Кнопка "Начать" */
+.button {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background-color: #2980b9;
+}
+
+/* ---------------------------------------------------------- */
+
+.facts-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.fact.card {
+  max-width: 400px;
+  text-align: left;
+}
+
+/* ---------------------------------------------------------- */
+
+.question {
+  padding: 15px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+#quizResult {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+/* ---------------------------------------------------------- */
+
+.theory-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.theory-item {
+  padding: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.theory-item:hover {
+  background-color: #e0e0e0;
+}
+
+#theory-content {
+  display: none;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ---------------------------------------------------------- */
+
+.hidden {
+  display: none;
+}
+
+#table {
+  width: 600px;
+  height: 250px;
+  background: #ddd;
+  border: 3px solid #aaa;
+  margin: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 50px;
+}
+
+.beaker {
+  width: 50px;
+  height: 120px;
+  border: 2px solid black;
+  position: relative;
+  background: white;
+  cursor: grab;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.liquid {
+  width: 100%;
+  height: 0%;
+  background: transparent;
+  position: absolute;
+  bottom: 0;
+  transition: height 0.5s, background-color 0.5s;
+}
+
+.chemical {
+  width: 70px;
+  height: 70px;
+  border: 2px solid black;
+  background: lightgray;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: grab;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.liquid {
+  width: 100%;
+  height: 0;
+  background-color: transparent;
+  position: absolute;
+  bottom: 0;
+  transition: height 1s, background-color 1s;
+}
+
+.bubbling {
+  animation: bubble 1s infinite alternate;
+}
+
+@keyframes bubble {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}

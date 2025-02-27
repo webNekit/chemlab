@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Таблица Менделеева{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Таблица Менделеева</h1>
+        <p>Нажмите на элемент, чтобы узнать о нём больше.</p>
+
+        <div class="periodic-table">
+            <!-- Пример элементов, можно добавить остальные -->
+            <div class="element" onclick="showElementInfo('H')">H</div>
+            <div class="element" onclick="showElementInfo('He')">He</div>
+            <div class="element" onclick="showElementInfo('O')">O</div>
+            <div class="element" onclick="showElementInfo('Na')">Na</div>
+            <div class="element" onclick="showElementInfo('Cl')">Cl</div>
+        </div>
+
+        <div id="element-info" class="card hidden">
+            <h2 id="element-title"></h2>
+            <p id="element-details"></p>
+            <button class="button" onclick="hideElementInfo()">Закрыть</button>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Химическая лаборатория{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+  </head>
+  <body>
+    <!-- Навигационная панель -->
+    <nav>
+      <div class="logo">⚗️ Виртуальная лаборатория</div>
+      <ul>
+        <li><a href="{% url 'website:home' %}">Главная</a></li>
+        <li><a href="{% url 'website:laboratory' %}">Лаборатория</a></li>
+        <li><a href="{% url 'website:tests' %}">Тесты</a></li>
+        <li><a href="{% url 'website:facts' %}">Факты</a></li>
+        <li><a href="{% url 'website:theory' %}">Теория</a></li>
+        <li><a href="{% url 'website:table' %}">Таблица Менделеева</a></li>
+      </ul>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <main>{% block content %}{% endblock %}</main>
+
+    <!-- Подключение скриптов -->
+    <script src="{% static 'scripts.js' %}"></script>
+  </body>
+</html>

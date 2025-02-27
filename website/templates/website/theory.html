@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Теория по химии{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Основные понятия и законы химии</h1>
+        <p>Выберите тему, чтобы увидеть подробную информацию:</p>
+
+        <div class="theory-list">
+            <div class="theory-item card" onclick="showTheory('law_conservation')">
+                <h3>Закон сохранения массы</h3>
+            </div>
+            <div class="theory-item card" onclick="showTheory('periodic_law')">
+                <h3>Периодический закон Менделеева</h3>
+            </div>
+            <div class="theory-item card" onclick="showTheory('electronegativity')">
+                <h3>Электроотрицательность</h3>
+            </div>
+        </div>
+
+        <div id="theory-content" class="card hidden">
+            <h2 id="theory-title"></h2>
+            <p id="theory-text"></p>
+            <button class="button" onclick="hideTheory()">Закрыть</button>
+        </div>
+    </div>
+{% endblock %}
