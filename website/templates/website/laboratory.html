@@ -52,795 +52,414 @@ nav {
   }
   
 
-        #lab-desk {
-            width: 90%;
-            height: 65vh;
-            margin: 20px auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
+  .container {
+    display: flex;
+    gap: 20px;
+}
 
-        #tools-panel {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #444;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            padding: 15px;
-            border-top: 3px solid #333;
-        }
+.sidebar {
+    width: 200px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-        .tool-item {
-            width: 70px;
-            height: 70px;
-            background: #fff;
-            border-radius: 10px;
-            cursor: grab;
-            transition: all 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            text-align: center;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-        }
+.lab-bench {
+    flex-grow: 1;
+    background: #e8ecef;
+    height: 500px;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        .tool-item:active {
-            cursor: grabbing;
-        }
+.draggable {
+    width: 80px;
+    height: 80px;
+    background: #4a90e2;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    cursor: move;
+    transition: transform 0.2s;
+}
 
-        .draggable {
-            position: absolute;
-            cursor: move;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+.draggable:hover {
+    transform: scale(1.05);
+}
 
-        .draggable:hover {
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        }
+.flask {
+    width: 60px;
+    height: 100px;
+    background: #e8ecef;
+    border: 3px solid #4a90e2;
+    border-radius: 0 0 30px 30px;
+    position: absolute;
+    cursor: move;
+    overflow: hidden;
+}
 
-        .flask {
-            width: 50px;
-            height: 100px;
-            background: #e0e0e0;
-            border-radius: 10px 10px 30px 30px;
-            position: relative;
-            border: 2px solid #ccc;
-        }
+.liquid {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-radius: 0 0 25px 25px;
+    transition: height 0.5s;
+}
 
-        .test-tube {
-            width: 30px;
-            height: 80px;
-            background: #e8e8e8;
-            border-radius: 5px 5px 15px 15px;
-            position: relative;
-            border: 2px solid #ccc;
-        }
+.burner {
+    width: 100px;
+    height: 40px;
+    background: #666;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
 
-        .liquid {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            border-radius: 0 0 15px 15px;
-            transition: height 0.5s, background-color 0.5s;
-        }
+.flame {
+    width: 30px;
+    height: 0;
+    background: #ff5722;
+    border-radius: 0 0 5px 5px;
+    transition: height 0.3s;
+}
 
-        .burner {
-            width: 60px;
-            height: 30px;
-            background: #666;
-            border-radius: 5px 5px 20px 20px;
-            position: absolute;
-            bottom: 0;
-        }
+.controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 
-        .burner.active {
-            animation: burner-flame 0.5s infinite alternate;
-        }
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background: #4a90e2;
+    color: white;
+    cursor: pointer;
+}
 
-        @keyframes burner-flame {
-            0% {
-                background: #ff5500;
-                box-shadow: 0 0 20px #ff5500;
-            }
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
 
-            100% {
-                background: #ff9933;
-                box-shadow: 0 0 30px #ff9933;
-            }
-        }
+@keyframes flame {
+    0% {
+        height: 20px;
+        opacity: 0.8;
+    }
 
-        .bubbles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
+    50% {
+        height: 30px;
+        opacity: 1;
+    }
 
-        .bubble {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: bubble-rise 2s infinite;
-        }
-
-        @keyframes bubble-rise {
-            0% {
-                transform: translateY(0);
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
-
-        .control-panel {
-            padding-block-start: 24px;
-            width: 100%;
-            justify-content: center;
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
-        }
-
-        button {
-            padding: 12px 20px;
-            cursor: pointer;
-            background: #4CAF50;
-            border: none;
-            color: white;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #45a049;
-        }
-
-        .reagent {
-            width: 40px;
-            height: 60px;
-            border-radius: 5px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .reagent-bottle {
-            width: 35px;
-            height: 50px;
-            background: #fff;
-            border-radius: 5px;
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .pour-target {
-            transform: rotate(-25deg);
-            transition: transform 0.3s;
-        }
-
-        .active-pouring {
-            transform: rotate(-90deg) scale(0.9);
-            transition: all 0.3s;
-        }
-
-        .heating-overlay {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 30px;
-            background: rgba(255, 0, 0, 0.3);
-            border-radius: 50%;
-            animation: heat-pulse 1s infinite;
-        }
-
-        @keyframes heat-pulse {
-            0% {
-                transform: translateX(-50%) scale(0.8);
-            }
-
-            50% {
-                transform: translateX(-50%) scale(1.2);
-            }
-
-            100% {
-                transform: translateX(-50%) scale(0.8);
-            }
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-            z-index: 1001;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        .fixed-position {
-            cursor: default !important;
-            pointer-events: none;
-        }
-
-        .temperature-indicator {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 12px;
-            color: #333;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-
-        .burner-temperature {
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 12px;
-            text-shadow: 0 0 3px black;
-        }
+    100% {
+        height: 20px;
+        opacity: 0.8;
+    }
+}
     </style>
 </head>
 
 <body>
     {% include 'partials/navbar.html' %}
-    <div class="control-panel">
-        <button onclick="toggleBurner()" id="burnerBtn">Включить горелку</button>
-        <button onclick="runReaction()">Проверить реакцию</button>
-        <button onclick="undo()">Отменить действие</button>
-    </div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="draggable" draggable="true" data-type="flask">Колба</div>
+            <div class="draggable" draggable="true" data-type="HCl">HCl</div>
+            <div class="draggable" draggable="true" data-type="NaOH">NaOH</div>
+            <div class="draggable" draggable="true" data-type="H2O2">H₂O₂</div>
+            <div class="draggable" draggable="true" data-type="CuSO4">CuSO₄</div>
+            <div class="draggable" draggable="true" data-type="Na">Na</div>
+        </div>
 
-    <div id="lab-desk">
-        <div class="burner" id="main-burner" style="left: calc(50% - 30px);"></div>
-    </div>
-
-    <div id="tools-panel">
-        <div class="tool-item" data-type="flask">
-            <div class="flask"></div>
-            Колба
-        </div>
-        <div class="tool-item" data-type="test-tube">
-            <div class="test-tube"></div>
-            Пробирка
-        </div>
-        <div class="tool-item" data-type="h2o">
-            <div class="reagent" style="background: #00b0ff;">
-                <div class="reagent-bottle"></div>
+        <div class="lab-bench" id="bench">
+            <div class="burner" id="burner">
+                <div class="flame" id="flame"></div>
             </div>
-            Вода
-        </div>
-        <div class="tool-item" data-type="hcl">
-            <div class="reagent" style="background: #ffeb3b;">
-                <div class="reagent-bottle"></div>
-            </div>
-            HCl
-        </div>
-        <div class="tool-item" data-type="naoh">
-            <div class="reagent" style="background: #8bc34a;">
-                <div class="reagent-bottle"></div>
-            </div>
-            NaOH
-        </div>
-        <div class="tool-item" data-type="cu">
-            <div class="reagent" style="background: #ff5722;">
-                <div class="reagent-bottle"></div>
-            </div>
-            Медь
-        </div>
-        <div class="tool-item" data-type="ag">
-            <div class="reagent" style="background: #9e9e9e;">
-                <div class="reagent-bottle"></div>
-            </div>
-            Серебро
         </div>
     </div>
 
-    <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="modal" id="resultModal">
-        <h2 id="modalTitle">Результат реакции</h2>
-        <div id="modalContent"></div>
+    <div class="controls">
+        <div id="temperature">Температура: 25°C</div>
+        <button id="toggleBurner">Включить горелку</button>
+        <button id="execute">Выполнить реакцию</button>
+        <button id="undo">Отменить действие</button>
+        <button class="help-button" onclick="showExamples()">Справка</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <h3 id="result-title">Результат реакции</h3>
+        <p id="result-text"></p>
         <button onclick="closeModal()">Закрыть</button>
     </div>
 
-    <script>
-        let currentDragged = null;
-        let offset = { x: 0, y: 0 };
-        let actionsHistory = [];
-        let activePouring = null;
-        let isBurnerOn = false;
-        let burnerInterval = null;
+    <div id="examples-modal" class="modal">
+        <h3>Примеры реакций</h3>
+        <div class="examples-list">
+            <ol>
+                <li>HCl (10g) + NaOH (10g) → 100°C → Нейтрализация</li>
+                <li>Na (5g) + H₂O₂ (5g) → 200°C → Взрыв</li>
+                <li>CuSO₄ (20g) → 150°C → Разложение</li>
+                <li>H₂O₂ (15g) → 80°C → Разложение</li>
+                <li>Na (8g) + HCl (8g) → 50°C → Выделение водорода</li>
+            </ol>
+        </div>
+        <button onclick="closeExamples()">Закрыть</button>
+    </div>
 
-        document.querySelectorAll('.tool-item').forEach(item => {
-            item.addEventListener('mousedown', startDragging);
+    <script>
+        let currentFlask = null;
+        let substances = {};
+        let temperature = 25;
+        let isHeating = false;
+        let actionHistory = [];
+        let heatInterval;
+
+        document.addEventListener('dragstart', e => {
+            if (e.target.classList.contains('draggable')) {
+                e.dataTransfer.setData('text/plain', e.target.dataset.type);
+            }
+            if (e.target.classList.contains('flask')) {
+                e.dataTransfer.setData('text/plain', 'flask');
+            }
         });
 
-        function startDragging(e) {
-            const toolItem = e.target.closest('.tool-item');
-            if (!toolItem) return;
+        document.getElementById('bench').addEventListener('dragover', e => e.preventDefault());
 
-            const type = toolItem.dataset.type;
-            const rect = toolItem.getBoundingClientRect();
-            offset = {
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top
-            };
+        document.getElementById('bench').addEventListener('drop', e => {
+            e.preventDefault();
+            const type = e.dataTransfer.getData('text/plain');
 
-            currentDragged = createElement(type, e.clientX - offset.x, e.clientY - offset.y);
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('mouseup', stopDragging);
-        }
-
-        function drag(e) {
-            if (!currentDragged) return;
-            currentDragged.style.left = e.clientX - offset.x + 'px';
-            currentDragged.style.top = e.clientY - offset.y + 'px';
-            checkPouring(currentDragged);
-        }
-
-        function stopDragging(e) {
-            document.removeEventListener('mousemove', drag);
-            document.removeEventListener('mouseup', stopDragging);
-
-            if (isWithinDesk(currentDragged)) {
-                finalizeElement(currentDragged);
-                saveAction('add', currentDragged);
-                enableDragging(currentDragged);
-            } else {
-                currentDragged.remove();
+            if (type === 'flask' && !currentFlask) {
+                createFlask(e.clientX, e.clientY);
+                recordAction('createFlask');
             }
-            currentDragged = null;
-            resetPouring();
+        });
+
+        function showExamples() {
+            document.getElementById('examples-modal').style.display = 'block';
         }
 
-        function createElement(type, x, y) {
-            const element = document.createElement('div');
-            element.className = 'draggable';
-            element.style.position = 'absolute';
-            element.style.left = x + 'px';
-            element.style.top = y + 'px';
-
-            switch (type) {
-                case 'flask':
-                    element.classList.add('flask');
-                    element.innerHTML = `<div class="liquid"></div>`;
-                    element.dataset.content = '';
-                    element.dataset.volume = 0;
-                    element.dataset.temperature = 25;
-                    break;
-
-                case 'test-tube':
-                    element.classList.add('test-tube');
-                    element.innerHTML = `<div class="liquid"></div>`;
-                    element.dataset.content = '';
-                    element.dataset.volume = 0;
-                    element.dataset.temperature = 25;
-                    break;
-
-                default:
-                    element.classList.add('reagent');
-                    element.style.background = getReagentColor(type);
-                    element.innerHTML = `
-                        <div class="reagent-bottle"></div>
-                        <div class="bubbles"></div>
-                    `;
-                    element.dataset.type = type;
-            }
-
-            return document.body.appendChild(element);
+        function closeExamples() {
+            document.getElementById('examples-modal').style.display = 'none';
         }
 
-        function enableDragging(element) {
-            element.addEventListener('mousedown', startElementDrag);
-        }
-
-        function startElementDrag(e) {
-            const element = e.target.closest('.draggable');
-            if (!element || element.classList.contains('fixed-position')) return;
-
-            const rect = element.getBoundingClientRect();
-            offset = {
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top
-            };
-
-            element.style.zIndex = 9999;
-            document.addEventListener('mousemove', moveElement);
-            document.addEventListener('mouseup', stopElementDrag);
-        }
-
-        function moveElement(e) {
-            const element = document.elementFromPoint(e.clientX, e.clientY).closest('.draggable');
-            if (!element || element.classList.contains('fixed-position')) return;
-
-            const deskRect = document.getElementById('lab-desk').getBoundingClientRect();
-            let newX = e.clientX - offset.x;
-            let newY = e.clientY - offset.y;
-
-            newX = Math.max(deskRect.left, Math.min(newX, deskRect.right - element.offsetWidth));
-            newY = Math.max(deskRect.top, Math.min(newY, deskRect.bottom - element.offsetHeight));
-
-            element.style.left = newX + 'px';
-            element.style.top = newY + 'px';
-
-            checkPouring(element);
-            checkHeating(element);
-        }
-
-        function stopElementDrag(e) {
-            document.removeEventListener('mousemove', moveElement);
-            document.removeEventListener('mouseup', stopElementDrag);
-            const element = e.target.closest('.draggable');
-            if (element) {
-                element.style.zIndex = '';
-                saveAction('move', element);
+        // Модифицируем обработчик закрытия модальных окон
+        window.onclick = e => {
+            if (e.target.className === 'modal') {
+                closeModal();
+                closeExamples();
             }
         }
 
-        function checkPouring(element) {
-            if (!element.classList.contains('reagent')) return;
+        function createFlask(x, y) {
+            currentFlask = document.createElement('div');
+            currentFlask.className = 'flask';
+            currentFlask.dataset.type = 'flask';
+            currentFlask.style.left = `${x - 30}px`;
+            currentFlask.style.top = `${y - 50}px`;
+            currentFlask.draggable = true;
 
-            const containers = document.querySelectorAll('.flask, .test-tube');
-            let foundTarget = false;
+            currentFlask.addEventListener('dragover', e => e.preventDefault());
 
-            containers.forEach(container => {
-                if (isOverlapping(element, container)) {
-                    foundTarget = true;
-                    if (activePouring !== container) {
-                        startPouring(element, container);
-                    }
+            currentFlask.addEventListener('drop', e => {
+                e.preventDefault();
+                const type = e.dataTransfer.getData('text/plain');
+                if (type !== 'flask') {
+                    addSubstance(type);
+                    recordAction('addSubstance', { type });
                 }
             });
 
-            if (!foundTarget) resetPouring();
+            currentFlask.addEventListener('dragstart', () => {
+                currentFlask.classList.add('dragging');
+            });
+
+            currentFlask.addEventListener('dragend', (e) => {
+                const rect = document.getElementById('bench').getBoundingClientRect();
+                const newX = e.clientX - rect.left - 30;
+                const newY = e.clientY - rect.top - 50;
+
+                currentFlask.style.left = `${newX}px`;
+                currentFlask.style.top = `${newY}px`;
+                currentFlask.classList.remove('dragging');
+                recordAction('moveFlask');
+            });
+
+            document.getElementById('bench').appendChild(currentFlask);
         }
 
-        function startPouring(reagent, container) {
-            activePouring = container;
-            container.classList.add('pour-target');
-            reagent.querySelector('.reagent-bottle').classList.add('active-pouring');
+        function addSubstance(type) {
+            const grams = prompt(`Введите количество грамм для ${type}:`);
+            if (!grams || isNaN(grams)) return;
 
-            const prevState = {
-                volume: container.dataset.volume,
-                content: container.dataset.content,
-                color: container.querySelector('.liquid').style.backgroundColor
-            };
+            if (!substances[type]) substances[type] = 0;
+            substances[type] += parseFloat(grams);
 
-            const pourInterval = setInterval(() => {
-                if (activePouring === container) {
-                    addLiquid(container, reagent.dataset.type, 2);
-                } else {
-                    clearInterval(pourInterval);
-                    saveAction('pour', container, prevState);
-                }
-            }, 100);
+            const liquid = document.createElement('div');
+            liquid.className = 'liquid';
+            liquid.style.height = `${Object.keys(substances).length * 15}%`;
+            liquid.style.backgroundColor = getColor(type);
+            currentFlask.appendChild(liquid);
         }
 
-        function resetPouring() {
-            if (activePouring) {
-                activePouring.classList.remove('pour-target');
-                activePouring = null;
-            }
-            document.querySelectorAll('.reagent-bottle').forEach(b =>
-                b.classList.remove('active-pouring'));
-        }
-
-        function addLiquid(container, type, amount) {
-            const liquid = container.querySelector('.liquid');
-            const currentVolume = parseInt(container.dataset.volume) || 0;
-            const maxVolume = container.classList.contains('flask') ? 150 : 80;
-            const newVolume = Math.min(currentVolume + amount, maxVolume);
-
-            container.dataset.volume = newVolume;
-            liquid.style.height = newVolume + '%';
-
-            const contents = (container.dataset.content || '').split(',').filter(Boolean);
-            if (!contents.includes(type)) {
-                contents.push(type);
-                container.dataset.content = contents.join(',');
-                liquid.style.backgroundColor = mixColors(
-                    liquid.style.backgroundColor,
-                    getReagentColor(type),
-                    contents.length
-                );
-            }
-
-            if (newVolume > 0) {
-                container.classList.add('fixed-position');
-            }
-        }
-
-        function checkHeating(element) {
-            const burner = document.getElementById('main-burner');
-            if ((element.classList.contains('flask') || element.classList.contains('test-tube')) &&
-                isOverlapping(element, burner)) {
-
-                if (!element.querySelector('.heating-overlay')) {
-                    const overlay = document.createElement('div');
-                    overlay.className = 'heating-overlay';
-                    element.appendChild(overlay);
-                }
-            } else {
-                const overlay = element.querySelector('.heating-overlay');
-                if (overlay) overlay.remove();
-            }
-        }
-
-        function toggleBurner() {
-            isBurnerOn = !isBurnerOn;
-            const burner = document.getElementById('main-burner');
-            burner.innerHTML = isBurnerOn ?
-                '<div class="burner-temperature">500°C</div>' :
-                '';
-            document.getElementById('burnerBtn').textContent = isBurnerOn ? 'Выключить горелку' : 'Включить горелку';
-            burner.classList.toggle('active', isBurnerOn);
-
-            if (isBurnerOn) {
-                burnerInterval = setInterval(() => {
-                    document.querySelectorAll('.flask, .test-tube').forEach(container => {
-                        if (isOverlapping(container, burner)) {
-                            const temp = parseInt(container.dataset.temperature) || 25;
-                            container.dataset.temperature = temp + 1;
-                            updateTemperatureDisplay(container);
-                        }
-                    });
-                }, 1000);
-            } else {
-                clearInterval(burnerInterval);
-            }
-        }
-
-        function updateTemperatureDisplay(container) {
-            let tempDisplay = container.querySelector('.temperature-indicator');
-            if (!tempDisplay) {
-                tempDisplay = document.createElement('div');
-                tempDisplay.className = 'temperature-indicator';
-                container.appendChild(tempDisplay);
-            }
-            tempDisplay.textContent = `${container.dataset.temperature}°C`;
-        }
-
-        function mixColors(color1, color2, count) {
-            const hexToRgb = hex => {
-                const bigint = parseInt(hex.replace('#', ''), 16);
-                return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
-            };
-
-            const rgb1 = hexToRgb(color1 || '#ffffff');
-            const rgb2 = hexToRgb(color2);
-            const ratio = 1 / count;
-
-            const r = Math.round(rgb1[0] + (rgb2[0] - rgb1[0]) * ratio);
-            const g = Math.round(rgb1[1] + (rgb2[1] - rgb1[1]) * ratio);
-            const b = Math.round(rgb1[2] + (rgb2[2] - rgb1[2]) * ratio);
-
-            return `rgb(${r},${g},${b})`;
-        }
-
-        function getReagentColor(type) {
+        function getColor(type) {
             const colors = {
-                h2o: '#00b0ff',
-                hcl: '#ffeb3b',
-                naoh: '#8bc34a',
-                cu: '#ff5722',
-                ag: '#9e9e9e'
+                HCl: '#ff6b6b',
+                NaOH: '#4ecdc4',
+                H2O2: '#45b7d1',
+                CuSO4: '#96ceb4',
+                Na: '#ffd700'
             };
-            return colors[type] || '#fff';
+            return colors[type] || '#ccc';
         }
 
-        function isWithinDesk(element) {
-            const deskRect = document.getElementById('lab-desk').getBoundingClientRect();
-            const elementRect = element.getBoundingClientRect();
-            return (
-                elementRect.top >= deskRect.top &&
-                elementRect.bottom <= deskRect.bottom &&
-                elementRect.left >= deskRect.left &&
-                elementRect.right <= deskRect.right
-            );
+        document.getElementById('toggleBurner').addEventListener('click', () => {
+            isHeating = !isHeating;
+            document.getElementById('toggleBurner').textContent =
+                isHeating ? 'Выключить горелку' : 'Включить горелку';
+            document.getElementById('flame').style.animation =
+                isHeating ? 'flame 0.5s infinite' : 'none';
+
+            if (isHeating) {
+                heatInterval = setInterval(heat, 200);
+            } else {
+                clearInterval(heatInterval);
+            }
+        });
+
+        function heat() {
+            if (temperature < 500) temperature += 0.5;
+            document.getElementById('temperature').textContent =
+                `Температура: ${Math.round(temperature)}°C`;
         }
 
-        function isOverlapping(a, b) {
-            const aRect = a.getBoundingClientRect();
-            const bRect = b.getBoundingClientRect();
-            return !(
-                aRect.bottom < bRect.top ||
-                aRect.top > bRect.bottom ||
-                aRect.right < bRect.left ||
-                aRect.left > bRect.right
-            );
+        document.getElementById('execute').addEventListener('click', () => {
+            let result = 'Реакция не произошла';
+
+            if (checkReaction(['HCl', 'NaOH'], 100, 10)) {
+                result = 'HCl (10g) + NaOH (10g) → 100°C → Нейтрализация';
+                resetExperiment();
+            }
+            else if (checkReaction(['Na', 'H2O2'], 200, 5)) {
+                result = '2Na + H₂O₂ → Na₂O + H₂O + Взрыв!';
+                resetExperiment();
+            }
+            else if (checkReaction(['CuSO4'], 150, 20)) {
+                result = 'CuSO₄ → CuO + SO₃ (Разложение)';
+                resetExperiment();
+            }
+            else if (checkReaction(['H2O2'], 80, 15)) {
+                result = '2H₂O₂ → 2H₂O + O₂↑ (Разложение)';
+                resetExperiment();
+            }
+            else if (checkReaction(['Na', 'HCl'], 50, 8)) {
+                result = '2Na + 2HCl → 2NaCl + H₂↑';
+                resetExperiment();
+            }
+
+            showResult(result);
+        });
+
+        function checkReaction(requiredSubstances, minTemp, minGrams = 0) {
+            return requiredSubstances.every(s =>
+                substances[s] >= minGrams
+            ) && temperature >= minTemp;
         }
 
-        function saveAction(type, element, extraData = {}) {
-            const state = {
-                x: element.style.left,
-                y: element.style.top,
-                data: JSON.parse(JSON.stringify(element.dataset)),
-                ...extraData
-            };
-            actionsHistory.push({ type, element, state });
-        }
+        function resetExperiment() {
+            temperature = 25;
+            isHeating = false;
+            clearInterval(heatInterval);
+            document.getElementById('temperature').textContent = 'Температура: 25°C';
+            document.getElementById('toggleBurner').textContent = 'Включить горелку';
+            document.getElementById('flame').style.animation = 'none';
 
-        function undo() {
-            if (actionsHistory.length === 0) return;
-            const lastAction = actionsHistory.pop();
-
-            switch (lastAction.type) {
-                case 'add':
-                    lastAction.element.remove();
-                    break;
-
-                case 'move':
-                    lastAction.element.style.left = lastAction.state.x;
-                    lastAction.element.style.top = lastAction.state.y;
-                    Object.assign(lastAction.element.dataset, lastAction.state.data);
-                    updateLiquid(lastAction.element);
-                    break;
-
-                case 'pour':
-                    lastAction.element.dataset.volume = lastAction.state.volume;
-                    lastAction.element.dataset.content = lastAction.state.content;
-                    lastAction.element.querySelector('.liquid').style.backgroundColor = lastAction.state.color;
-                    break;
-
-                case 'heat':
-                    lastAction.element.dataset.temperature = lastAction.state.temperature;
-                    break;
+            if (currentFlask) {
+                currentFlask.querySelectorAll('.liquid').forEach(l => l.remove());
+                substances = {};
             }
         }
 
-        function updateLiquid(element) {
-            const liquid = element.querySelector('.liquid');
-            if (liquid) {
-                liquid.style.height = element.dataset.volume + '%';
-                if (element.dataset.color) {
-                    liquid.style.backgroundColor = element.dataset.color;
-                }
-            }
-        }
-
-        function runReaction() {
-            let reactionResults = [];
-
-            document.querySelectorAll('.flask, .test-tube').forEach(container => {
-                const contents = (container.dataset.content || '').split(',').filter(Boolean);
-                const temp = parseInt(container.dataset.temperature) || 25;
-
-                let result = `<strong>${container.classList.contains('flask') ? 'Колба' : 'Пробирка'}:</strong><br>`;
-                result += `Состав: ${contents.join(', ') || 'пусто'}<br>`;
-                result += `Температура: ${temp}°C<br>`;
-
-                if (contents.includes('hcl') && contents.includes('cu')) {
-                    if (temp > 100) {
-                        result += "Реакция: 2HCl + Cu (нагревание) → CuCl₂ + H₂↑";
-                    } else {
-                        result += "Реакция: 2HCl + Cu → медленное растворение (требуется нагрев)";
-                    }
-                }
-                else if (contents.includes('naoh') && contents.includes('hcl')) {
-                    if (temp > 50) {
-                        result += "Реакция: NaOH + HCl → NaCl + H₂O (ускоренная)";
-                    } else {
-                        result += "Реакция: NaOH + HCl → NaCl + H₂O";
-                    }
-                }
-                else if (contents.includes('h2o') && contents.includes('naoh')) {
-                    result += "Растворение NaOH в воде";
-                }
-                else {
-                    result += "Активных реакций не обнаружено";
-                }
-
-                reactionResults.push(result);
-            });
-
-            showModal('Результаты эксперимента', reactionResults.join('<hr>'));
-        }
-
-        function showModal(title, content) {
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalContent').innerHTML = content;
-            document.getElementById('modalOverlay').style.display = 'block';
-            document.getElementById('resultModal').style.display = 'block';
+        function showResult(text) {
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('result-text').textContent = text;
         }
 
         function closeModal() {
-            document.getElementById('modalOverlay').style.display = 'none';
-            document.getElementById('resultModal').style.display = 'none';
+            document.getElementById('modal').style.display = 'none';
         }
 
-        function createBubbles(container) {
-            const bubbles = container.querySelector('.bubbles');
-            if (!bubbles) return;
+        document.getElementById('undo').addEventListener('click', () => {
+            if (actionHistory.length === 0) return;
 
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
-            bubble.style.left = Math.random() * 80 + 10 + '%';
-            bubbles.appendChild(bubble);
+            const lastAction = actionHistory.pop();
+            const prevState = lastAction.state;
 
-            setTimeout(() => bubble.remove(), 2000);
-        }
-        function runReaction() {
-            let reactionResults = [];
+            substances = { ...prevState.substances };
+            temperature = prevState.temperature;
 
-            document.querySelectorAll('.flask, .test-tube').forEach(container => {
-                const contents = (container.dataset.content || '').split(',').filter(Boolean);
-                const temp = parseInt(container.dataset.temperature) || 25;
-                const volume = parseInt(container.dataset.volume) || 0;
+            document.getElementById('temperature').textContent =
+                `Температура: ${temperature}°C`;
 
-                // Пропускаем пустые сосуды
-                if (contents.length === 0 || volume === 0) return;
-
-                let result = `<strong>${container.classList.contains('flask') ? 'Колба' : 'Пробирка'}:</strong><br>`;
-                result += `Состав: ${contents.join(', ')}<br>`;
-                result += `Температура: ${temp}°C<br>`;
-
-                if (contents.includes('hcl') && contents.includes('cu')) {
-                    if (temp > 100) {
-                        result += "Реакция: 2HCl + Cu (нагревание) → CuCl₂ + H₂↑";
-                    } else {
-                        result += "Реакция: 2HCl + Cu → медленное растворение (требуется нагрев)";
-                    }
-                }
-                else if (contents.includes('naoh') && contents.includes('hcl')) {
-                    if (temp > 50) {
-                        result += "Реакция: NaOH + HCl → NaCl + H₂O (ускоренная)";
-                    } else {
-                        result += "Реакция: NaOH + HCl → NaCl + H₂O";
-                    }
-                }
-                else if (contents.includes('h2o') && contents.includes('naoh')) {
-                    result += "Растворение NaOH в воде";
-                }
-                else {
-                    result += "Активных реакций не обнаружено";
-                }
-
-                reactionResults.push(result);
-            });
-
-            if (reactionResults.length === 0) {
-                showModal('Результаты эксперимента', 'Нет активных сосудов с реагентами');
-            } else {
-                showModal('Результаты эксперимента', reactionResults.join('<hr>'));
+            if (currentFlask && prevState.flaskPosition) {
+                currentFlask.style.left = `${prevState.flaskPosition.left}px`;
+                currentFlask.style.top = `${prevState.flaskPosition.top}px`;
             }
+
+            if (currentFlask) {
+                currentFlask.querySelectorAll('.liquid').forEach(l => l.remove());
+                Object.keys(substances).forEach((type, i) => {
+                    const liquid = document.createElement('div');
+                    liquid.className = 'liquid';
+                    liquid.style.height = `${(i + 1) * 15}%`;
+                    liquid.style.backgroundColor = getColor(type);
+                    currentFlask.appendChild(liquid);
+                });
+            }
+
+            if (lastAction.type === 'createFlask') {
+                currentFlask.remove();
+                currentFlask = null;
+                substances = {};
+            }
+        });
+
+        function recordAction(type, data) {
+            actionHistory.push({
+                type,
+                data,
+                state: JSON.parse(JSON.stringify({
+                    substances,
+                    temperature,
+                    flaskPosition: currentFlask?.getBoundingClientRect()
+                }))
+            });
+        }
+
+        window.onclick = e => {
+            if (e.target.className === 'modal') closeModal();
         }
     </script>
 </body>
